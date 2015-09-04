@@ -12,9 +12,9 @@ Write this into the editor:
     ____source code (two ore more underscores will be replaced my empty spaces)  
     ____source code (two ore more underscores will be replaced my empty spaces)  
     
-    \```javascript
+    ```javascript
     source code
-    \```
+    ```
     [/markdown]
 
 and the shortcode content will be parsed with parsedown. Syntax highlighting will appear for the source codes.  
