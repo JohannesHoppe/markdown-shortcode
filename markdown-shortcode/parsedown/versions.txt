@@ -1,0 +1,7 @@
+parsedown
+2015-08-13
+https://github.com/erusev/parsedown/commit/fa005fdb954330ae6dccb3bb59481da0172d397e
+
+parsedown-extra
+2015-03-18
+https://github.com/erusev/parsedown-extra/commit/5829ab17e68bd3f3c3da0633647b7874e5784385
