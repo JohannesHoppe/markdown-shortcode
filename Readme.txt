@@ -39,9 +39,9 @@ and the shortcode content will be parsed with parsedown. Syntax highlighting wil
 == Frequently Asked Questions ==
 = Will it work in the Visual Editor? =
 
-Yes. You can switch between Visual and Text(HTML) mode. The plugin converts &< &> back to the original chaacters.
+Yes. You can switch between Visual and Text(HTML) mode. The plugin converts html entities back to the original characters.
 
 = The WYSIWYG editor (TinyMCE) is removing empty spaces! =
 
-Replace empty spaces with underscores __ .
-They will be converted to empty spaces before markdown conversion.
+Indeed, TinyMCE is well-known for destroying markup. Replace empty spaces with underscores __ .
+Underscores will be converted to empty spaces right before markdown conversion.
