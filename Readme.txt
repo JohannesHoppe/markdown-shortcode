@@ -46,3 +46,9 @@ Yes. You can switch between Visual and Text(HTML) mode. The plugin converts html
 
 Indeed, TinyMCE is well-known for destroying markup. Replace empty spaces with underscores __ .
 Underscores will be converted to empty spaces right before markdown conversion.
+
+
+== Screenshots ==
+
+1. Blog post written in markdown.
+2. Same blog post on front end.
