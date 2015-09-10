@@ -11,7 +11,7 @@ Damn simple markdown for wordpress via shortcode, uses parsedown (parsedown.org)
 == Description ==
 
 Damn simple [markdown]#via shortcode[/markdown] for wordpress.
-This plugin uses [parsedown](http://parsedown.org/) and [highlight.js](highlightjs.org). Zero configuration.
+This plugin uses [parsedown](http://parsedown.org/) and [highlight.js](http://highlightjs.org). Zero configuration.
 
 Write this into the editor:
 
