@@ -1,3 +1,5 @@
+![banner](icon-256x256.png)
+
 # markdown-shortcode
 
 Damn simple [markdown]#via shortcode[/markdown] for wordpress.
