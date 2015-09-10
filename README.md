@@ -9,8 +9,8 @@ Write this into the editor:
     #h1  
     ##h2  
     text  
-    ____source code (two ore more underscores will be replaced my empty spaces)  
-    ____source code (two ore more underscores will be replaced my empty spaces)  
+    ____source code (two ore more underscores will be replaced by empty spaces)  
+    ____source code (two ore more underscores will be replaced by empty spaces)  
     
     ```javascript
     source code
