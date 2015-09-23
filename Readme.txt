@@ -30,6 +30,7 @@ Write this into the editor:
 and the shortcode content will be parsed with parsedown. Syntax highlighting will appear for the source codes.  
 
 This plugin is available at [github](https://github.com/JohannesHoppe/markdown-shortcode), too.
+Please report issues at __github__, pull requests are welcome, too! 
 
 == Installation ==
 1. Upload the `markdown-shortcode` directory to the `/wp-content/plugins` directory.
@@ -52,3 +53,8 @@ Underscores will be converted to empty spaces right before markdown conversion.
 
 1. Blog post written in markdown.
 2. Same blog post on front end.
+
+== Changelog ==
+
+see https://github.com/JohannesHoppe/markdown-shortcode/releases for a list of all releases
+
