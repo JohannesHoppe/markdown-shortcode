@@ -27,6 +27,7 @@ add_shortcode('markdown', 'markdown_shortcode');
 function undo_html_entities($content){
     $content = str_replace("&lt;", "<", $content);
     $content = str_replace("&gt;", ">", $content);
+    $content = str_replace("&amp;", "&", $content);
     return $content;
 }
 
