@@ -30,7 +30,7 @@ Write this into the editor:
 and the shortcode content will be parsed with parsedown. Syntax highlighting will appear for the source codes.  
 
 This plugin is available at [github](https://github.com/JohannesHoppe/markdown-shortcode), too.
-Please report issues at github, pull requests are welcome, too!
+Please __report issues at github__, pull requests are welcome, too!
 
 == Installation ==
 1. Upload the `markdown-shortcode` directory to the `/wp-content/plugins` directory.
