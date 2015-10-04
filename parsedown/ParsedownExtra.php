@@ -1,4 +1,5 @@
 <?php
+namespace markdown_shortcode; // added for more compatibility with other plugins
 
 #
 #

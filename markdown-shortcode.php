@@ -16,7 +16,7 @@ function markdown_shortcode($attr, $content = null) {
     $content = trim($content);
     $content = underscores_to_spaces($content);
 
-    $extra = new ParsedownExtra();
+    $extra = new markdown_shortcode\ParsedownExtra();
     $parsed_content = $extra->text($content);
     
     return $parsed_content;
