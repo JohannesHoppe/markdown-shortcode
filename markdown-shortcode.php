@@ -2,63 +2,86 @@
 /*
 Plugin Name: Markdown Shortcode
 Description: damn simple [markdown]#via shortcode[/markdown], uses parsedown (parsedown.org) and highlight.js (highlightjs.org)
-Version:     0.1.2
+Version:     0.2
 Author:      Johannes Hoppe
 Author URI:  http://haushoppe-its.de
 */
 
-include('parsedown/Parsedown.php');
-include('parsedown/ParsedownExtra.php');
+add_action('plugins_loaded', array('Markdown_Shortcode_Plugin', 'get_instance'));
 
-function markdown_shortcode($attr, $content = null) {
+class Markdown_Shortcode_Plugin {
 
-    $content = undo_html_entities($content);
-    $content = trim($content);
-    $content = underscores_to_spaces($content);
+	private static $instance;
 
-    $extra = new markdown_shortcode\ParsedownExtra();
-    $parsed_content = $extra->text($content);
-    
-    return $parsed_content;
+	public static function get_instance() {
+		if (!self::$instance) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	function __construct() {
+		$this->cache = array();
+		add_action('init', array(&$this, 'init'));
+	}
+
+	function init() {
+		add_action('wp_enqueue_scripts', array(&$this, 'init_highlight'));
+		add_shortcode('markdown', array(&$this, 'markdown_shortcode'));
+		add_filter('the_content', array(&$this, 'markdown_shortcode_preprocess'), 1);
+	}
+
+	function init_highlight() {
+		wp_enqueue_style("highlight",  plugins_url('highlight/styles/github.css', __FILE__));
+		wp_enqueue_script("highlight",  plugins_url('highlight/highlight.min.js', __FILE__));
+		wp_enqueue_script("highlight_init",  plugins_url('init_highlight.js', __FILE__));
+	}
+
+	function markdown_shortcode($attr, $content = null) {
+		require_once('parsedown/Parsedown.php');
+		require_once('parsedown/ParsedownExtra.php');
+
+		if (isset($this->cache[$content])) $content = $this->cache[$content];
+
+		$content = html_entity_decode($content);
+		$content = trim($content);
+		$content = $this->underscores_to_spaces($content);
+
+		$extra = new markdown_shortcode\ParsedownExtra();
+		$parsed_content = $extra->text($content);
+
+		return $parsed_content;
+	}
+
+	function markdown_shortcode_pre($attr, $content = null) {
+		$key = sha1($content);
+		$this->cache[$key] = $content;
+		return "[markdown]{$key}[/markdown]";
+	}
+
+	function markdown_shortcode_preprocess($content) {
+		global $shortcode_tags;
+
+		// Backup current registered shortcodes and clear them all out
+		$orig_shortcode_tags = $shortcode_tags;
+		$shortcode_tags = array();
+
+		add_shortcode('markdown', array(&$this, 'markdown_shortcode_pre'));
+
+		// Do the shortcode (only the one above is registered)
+		$content = do_shortcode($content);
+
+		// Put the original shortcodes back
+		$shortcode_tags = $orig_shortcode_tags;
+		return $content;
+	}
+
+	// Replaces more than one underscore to same amount of spaces
+	function underscores_to_spaces($content) {
+	    $content = preg_replace_callback('/_{2,}/', function ($matches) {
+	        return str_replace('_', ' ', $matches[0]);
+	    }, $content);
+	    return $content;
+	}
 }
-add_shortcode('markdown', 'markdown_shortcode');
-
-// Reverts changes that were applied by the Visual editor
-function undo_html_entities($content){
-    $content = str_replace("&lt;", "<", $content);
-    $content = str_replace("&gt;", ">", $content);
-    $content = str_replace("&amp;", "&", $content);
-    return $content;
-}
-
-// Replaces more than one underscore to same amount of spaces
-function underscores_to_spaces($content) {
-    $content = preg_replace_callback('/_{2,}/', function ($matches) {
-        return str_replace('_', ' ', $matches[0]);
-    }, $content);
-    return $content;
-}
-
-function init_highlight() {
-    wp_enqueue_style("highlight",  plugin_dir_url(__FILE__) . 'highlight/styles/github.css');
-    wp_enqueue_script("highlight",  plugin_dir_url(__FILE__) . 'highlight/highlight.min.js');
-    wp_enqueue_script("highlight_init",  plugin_dir_url(__FILE__) . 'init_highlight.js');
-}
-add_action('init', 'init_highlight');
-
-
-// Removing wpautop() To Content Only In Shortcodes
-//
-// We first remove the wpautop() function and then re-add it with a different priority,
-// now we can apply the shortcode_unautop() after the wpautop() function.
-// Now all the code inside of the shortcodes will not have a trailing paragraph tag and
-// you will no longer have line breaks at the end of your code snippets.
-// --> as seen here http://www.paulund.co.uk/remove-line-breaks-in-shortcodes
-remove_filter( 'the_content', 'wpautop' );
-add_filter('the_content', 'wpautop' , 99);
-add_filter('the_content', 'shortcode_unautop',100 );
-
-// Stop WordPress converting quotes to pretty quotes (nobody will miss them)
-remove_filter('the_content', 'wptexturize');
-
-
