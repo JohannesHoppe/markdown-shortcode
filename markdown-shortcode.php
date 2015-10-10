@@ -2,7 +2,7 @@
 /*
 Plugin Name: Markdown Shortcode
 Description: damn simple [markdown]#via shortcode[/markdown], uses parsedown (parsedown.org) and highlight.js (highlightjs.org)
-Version:     0.2
+Version:     0.2.1
 Author:      Johannes Hoppe
 Author URI:  http://haushoppe-its.de
 */
