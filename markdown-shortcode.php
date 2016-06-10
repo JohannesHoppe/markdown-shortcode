@@ -2,7 +2,7 @@
 /*
 Plugin Name: Markdown Shortcode
 Description: damn simple [markdown]#via shortcode[/markdown], uses parsedown (parsedown.org) and highlight.js (highlightjs.org)
-Version:     0.2.1
+Version:     0.2.2
 Author:      Johannes Hoppe
 Author URI:  http://haushoppe-its.de
 */
@@ -51,7 +51,7 @@ class Markdown_Shortcode_Plugin {
     $content = $this->underscores_to_spaces($content);
 
     $extra = new markdown_shortcode\ParsedownExtra();
-    $parsed_content = $extra->text($content);
+    $parsed_content = '<div class="markdown">' . $extra->text($content) .'</div>';
 
     return $parsed_content;
   }
