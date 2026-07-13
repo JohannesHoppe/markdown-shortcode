@@ -1,3 +1,6 @@
+> # I've decided to stop using WordPress entirely and switch all my projects to an SSG (static site generator) and/or Angular with prerendering. Constant security vulnerabilities in themes and plugins, constant attacks on /wp-admin... I'm done with all of this. This project will be archived very soon. Please feel free to fork the project and continue developing it!
+
+
 ![banner](icon-256x256.png)
 
 # markdown-shortcode
