@@ -2,7 +2,7 @@
 /*
 Plugin Name: Markdown Shortcode
 Description: damn simple [markdown]#via shortcode[/markdown], uses parsedown (parsedown.org) and highlight.js (highlightjs.org)
-Version:     0.2.3
+Version:     0.2.3.2
 Author:      Johannes Hoppe
 Author URI:  http://haushoppe-its.de
 */
@@ -41,6 +41,7 @@ class Markdown_Shortcode_Plugin {
   function markdown_shortcode($attr, $content = null) {
     require_once('parsedown/Parsedown.php');
     require_once('parsedown/ParsedownExtra.php');
+    require_once('parsedown/ParsedownExtended.php');
 
     if (isset($this->cache[$content])) {
       $content = $this->cache[$content];
@@ -50,8 +51,8 @@ class Markdown_Shortcode_Plugin {
     $content = trim($content);
     $content = $this->underscores_to_spaces($content);
 
-    $extra = new markdown_shortcode\ParsedownExtra();
-    $parsed_content = '<div class="markdown">' . $extra->text($content) .'</div>';
+    $parser = new  markdown_shortcode\ParsedownExtended();
+    $parsed_content = '<div class="markdown">' . $parser->text($content) .'</div>';
 
     // Sanitize the output to prevent XSS attacks
     // wp_kses_post() removes dangerous HTML tags like <script> while keeping safe HTML

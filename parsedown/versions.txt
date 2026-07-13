@@ -1,7 +1,8 @@
-parsedown
-2015-08-13
-https://github.com/erusev/parsedown/commit/fa005fdb954330ae6dccb3bb59481da0172d397e
+parsedown v1.7.4
+https://github.com/erusev/parsedown/releases/tag/1.7.4
 
-parsedown-extra
-2015-03-18
-https://github.com/erusev/parsedown-extra/commit/5829ab17e68bd3f3c3da0633647b7874e5784385
+parsedown-extra v0.8.1
+https://github.com/erusev/parsedown-extra/releases/tag/0.8.1
+
+ParsedownExtended v2.0.1
+https://github.com/BenjaminHoegh/ParsedownExtended/releases/tag/v2.0.1
